@@ -1,12 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main";
+import App from "./app";
 import {offersMocks} from "../../moks/offers";
 
-it(`Main component render correct`, () => {
+it(`App component render correct`, () => {
   const tree = renderer
       .create(
-          <Main
+          <App
             offers = {offersMocks}
           />
       )
