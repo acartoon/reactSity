@@ -1,13 +1,15 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main";
+import PlaceCard from "./place-card";
 import {offersMocks} from "../../moks/offers";
 
-it(`Main component render correct`, () => {
+it(`PlaceCard component render correct`, () => {
   const tree = renderer
       .create(
-          <Main
-            offers = {offersMocks}
+          <PlaceCard
+            offer={offersMocks[0]}
+            key={offersMocks[0].id}
+            onTitleClick = {() => null}
           />
       )
     .toJSON();

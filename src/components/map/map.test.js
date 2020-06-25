@@ -1,14 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main";
-import {offersMocks} from "../../moks/offers";
+import Map from "./map";
 
 it(`Main component render correct`, () => {
   const tree = renderer
       .create(
-          <Main
-            offers = {offersMocks}
-          />
+          <Map />
       )
     .toJSON();
   expect(tree).toMatchSnapshot();
