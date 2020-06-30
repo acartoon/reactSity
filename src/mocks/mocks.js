@@ -1,6 +1,6 @@
 export const mocks = [
   {
-    id: 634,
+    id: `FoY`,
     img: `img/apartment-01.jpg`,
     isPremium: true,
     price: 294,
@@ -8,7 +8,7 @@ export const mocks = [
     type: `Private room`,
   },
   {
-    id: 62,
+    id: `m7p`,
     img: `img/apartment-02.jpg`,
     isPremium: true,
     price: 308,
@@ -16,7 +16,7 @@ export const mocks = [
     type: `Private room`,
   },
   {
-    id: 688,
+    id: `jEu`,
     img: `img/apartment-01.jpg`,
     isPremium: true,
     price: 312,
@@ -24,7 +24,7 @@ export const mocks = [
     type: `Private room`,
   },
   {
-    id: 958,
+    id: `aZr`,
     img: `img/apartment-03.jpg`,
     isPremium: true,
     price: 372,
@@ -32,7 +32,7 @@ export const mocks = [
     type: `Private room`,
   },
   {
-    id: 18,
+    id: `TSe`,
     img: `img/apartment-02.jpg`,
     isPremium: false,
     price: 316,
@@ -40,7 +40,7 @@ export const mocks = [
     type: `Private room`,
   },
   {
-    id: 199,
+    id: `jEf`,
     img: `img/apartment-02.jpg`,
     isPremium: true,
     price: 266,

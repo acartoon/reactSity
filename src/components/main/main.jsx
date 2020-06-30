@@ -1,10 +1,10 @@
 import React from "react";
-import PlaceCard from "../place-card/place-card.jsx";
 import PropTypes from "prop-types";
 import Locations from "../locations/locations.jsx";
 import Map from "../map/map.jsx";
 import Sorting from "../sorting/sorting.jsx";
 import Header from "../header/header.jsx";
+import PlaceList from "../place-list/place-list.jsx";
 
 const Main = (props) => {
   const {offers} = props;
@@ -27,17 +27,10 @@ const Main = (props) => {
 
             < Sorting />
 
-            <div className="cities__places-list places__list tabs__content">
+            < PlaceList
+              offers={offers}
+            />
 
-              {offers.map((offer) => {
-                return <PlaceCard
-                  offer={offer}
-                  key={offer.id}
-                  onTitleClick = {() => null}
-                />;
-              })}
-
-            </div>
           </section>
           <div className="cities__right-section">
 

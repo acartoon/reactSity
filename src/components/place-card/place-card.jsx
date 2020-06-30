@@ -3,8 +3,11 @@ import PropTypes from "prop-types";
 import {typeRoom, titles} from "../../mocks/offers";
 
 const PlaceCard = (props) => {
-  const {offer, onTitleClick} = props;
-  return <article className="cities__place-card place-card">
+  const {offer, onTitleClick, onActiveCard} = props;
+  return <article
+    onMouseEnter={() => onActiveCard({id: offer.id})}
+    onMouseLeave={() => onActiveCard({id: null})}
+    className="cities__place-card place-card">
 
     {offer.isPremium ? <div className="place-card__mark">
       <span>Premium</span>
@@ -54,6 +57,7 @@ const PlaceCard = (props) => {
 
 PlaceCard.propTypes = {
   offer: PropTypes.shape({
+    id: PropTypes.string,
     title: PropTypes.oneOf(titles),
     price: PropTypes.number,
     isPremium: PropTypes.bool,
@@ -61,6 +65,7 @@ PlaceCard.propTypes = {
     type: PropTypes.oneOf(typeRoom),
   }).isRequired,
   onTitleClick: PropTypes.func.isRequired,
+  onActiveCard: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;

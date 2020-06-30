@@ -1,4 +1,4 @@
-import {getRandomInt} from "../utils";
+import {getRandomInt, getRandomString} from "../utils";
 
 const OFFER_COUNT = 6;
 
@@ -21,7 +21,7 @@ export const typeRoom = [`Apartment`, `Private room`];
 const getOffer = () => {
 
   return {
-    id: Math.floor(Math.random() * 1000),
+    id: getRandomString(3),
     title: titles[getRandomInt(titles.length - 1)],
     price: getRandomInt(500, 150),
     isPremium: Boolean(Math.round(Math.random())),

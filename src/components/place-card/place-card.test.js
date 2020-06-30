@@ -10,6 +10,7 @@ it(`PlaceCard component render correct`, () => {
             offer={mocks[0]}
             key={mocks[0].id}
             onTitleClick = {() => null}
+            onActiveCard = {() => null}
           />
       )
     .toJSON();
