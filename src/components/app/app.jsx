@@ -6,6 +6,7 @@ const App = (props) => {
   const {offers} = props;
 
   return <Main
+    test = {`15`}
     offers={offers}
   />;
 };
