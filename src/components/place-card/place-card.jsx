@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {typeRoom, titles} from "../../moks/offers";
+import {typeRoom, titles} from "../../mocks/offers";
 
 const PlaceCard = (props) => {
-  const {offer} = props;
+  const {offer, onTitleClick} = props;
   return <article className="cities__place-card place-card">
 
     {offer.isPremium ? <div className="place-card__mark">
@@ -41,7 +41,9 @@ const PlaceCard = (props) => {
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
-      <h2 className="place-card__name">
+      <h2
+        onClick={onTitleClick}
+        className="place-card__name">
         <a href="#">{offer.title}</a>
       </h2>
       <p className="place-card__type">{offer.type}</p>
@@ -57,7 +59,8 @@ PlaceCard.propTypes = {
     isPremium: PropTypes.bool,
     img: PropTypes.string,
     type: PropTypes.oneOf(typeRoom),
-  }),
+  }).isRequired,
+  onTitleClick: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;

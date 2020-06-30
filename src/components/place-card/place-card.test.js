@@ -1,14 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import PlaceCard from "./place-card";
-import {offersMocks} from "../../moks/offers";
+import {mocks} from "../../mocks/mocks";
 
 it(`PlaceCard component render correct`, () => {
   const tree = renderer
       .create(
           <PlaceCard
-            offer={offersMocks[0]}
-            key={offersMocks[0].id}
+            offer={mocks[0]}
+            key={mocks[0].id}
             onTitleClick = {() => null}
           />
       )

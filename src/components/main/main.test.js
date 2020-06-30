@@ -1,13 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main";
-import {offersMocks} from "../../moks/offers";
+import {mocks} from "../../mocks/mocks";
 
 it(`Main component render correct`, () => {
   const tree = renderer
       .create(
           <Main
-            offers = {offersMocks}
+            offers = {mocks}
           />
       )
     .toJSON();
