@@ -34,7 +34,9 @@ const Main = (props) => {
           </section>
           <div className="cities__right-section">
 
-            < Map />
+            < Map
+              offers={offers}
+            />
 
           </div>
         </div>
