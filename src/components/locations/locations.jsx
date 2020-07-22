@@ -1,41 +1,31 @@
 import React from "react";
+import LocationItem from "../locations-item/locations-item.jsx";
+import PropTypes from "prop-types";
 
-const Locations = () => {
+const Locations = (props) => {
+  const {locations, locationClickHandler, selectedСity} = props;
   return <section className="locations container">
     <ul className="locations__list tabs__list">
-      <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
-          <span>Paris</span>
-        </a>
-      </li>
-      <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
-          <span>Cologne</span>
-        </a>
-      </li>
-      <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
-          <span>Brussels</span>
-        </a>
-      </li>
-      <li className="locations__item">
-        <a className="locations__item-link tabs__item tabs__item--active">
-          <span>Amsterdam</span>
-        </a>
-      </li>
-      <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
-          <span>Hamburg</span>
-        </a>
-      </li>
-      <li className="locations__item">
-        <a className="locations__item-link tabs__item" href="#">
-          <span>Dusseldorf</span>
-        </a>
-      </li>
+
+
+      {Array.from(locations).map((location, i) => (
+        <LocationItem
+          key = {location + i}
+          location = {location}
+          active = {location === selectedСity.name ? true : false}
+          locationClickHandler = {locationClickHandler}
+        />
+      ))}
     </ul>
   </section>;
 };
 
 
 export default Locations;
+
+Locations.propTypes = {
+  locations: PropTypes.array.isRequired,
+  selectedСity: PropTypes.object.isRequired,
+  locationClickHandler: PropTypes.func.isRequired,
+};
+
