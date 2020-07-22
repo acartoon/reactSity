@@ -1,12 +1,17 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main";
-import {mocks} from "../../mocks/mocks";
+import {mocks, Сities} from "../../mocks/mocks";
 
 jest.mock(`leaflet`, () => {
   return {
     icon: jest.fn(),
     tileLayer: jest.fn().mockImplementation(() => {
+      return {
+        addTo: jest.fn(),
+      };
+    }),
+    layerGroup: jest.fn().mockImplementation(() => {
       return {
         addTo: jest.fn(),
       };
@@ -29,6 +34,10 @@ it(`Main component render correct`, () => {
       .create(
           <Main
             offers = {mocks}
+            selectedСity = {Сities.AMSTERDAM}
+            locationClickHandler = {jest.fn()}
+            locations = {[`Amsterdam`, `Dusseldorf`]}
+
           />
       )
     .toJSON();

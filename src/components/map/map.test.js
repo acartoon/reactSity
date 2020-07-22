@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Map from "./map";
-import {mocks} from "../../mocks/mocks";
+import {mocks, Сities} from "../../mocks/mocks";
 
 jest.mock(`leaflet`, () => {
   return {
@@ -11,16 +11,25 @@ jest.mock(`leaflet`, () => {
         addTo: jest.fn(),
       };
     }),
+
+    layerGroup: jest.fn().mockImplementation(() => {
+      return {
+        addTo: jest.fn(),
+      };
+    }),
+
     marker: jest.fn().mockImplementation(() => {
       return {
         addTo: jest.fn(),
       };
     }),
+
     map: jest.fn().mockImplementation(() => {
       return {
         setView: jest.fn(),
       };
     }),
+
   };
 });
 
@@ -28,7 +37,8 @@ it(`Main component render correct`, () => {
   const tree = renderer
       .create(
           <Map
-            offers={mocks}
+            offers = {mocks}
+            selectedСity = {Сities.AMSTERDAM}
           />
       )
     .toJSON();

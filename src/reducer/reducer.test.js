@@ -1,33 +1,7 @@
-export const Сities = {
-  AMSTERDAM: {
-    name: `Amsterdam`,
-    location: {
-      latitude: 52.370216,
-      longitude: 4.895168,
-      zoom: 10
-    }
-  },
+import {reducer, ActionType} from "./reducer.js";
+const {Сities} = require(`../mocks/mocks.js`);
 
-  HAMBURG: {
-    name: `Hamburg`,
-    location: {
-      latitude: 53.55,
-      longitude: 10,
-      zoom: 12
-    }
-  },
-
-  DUSSELDORF: {
-    name: `Dusseldorf`,
-    location: {
-      latitude: 51.22172,
-      longitude: 6.77616,
-      zoom: 12
-    }
-  },
-};
-
-export const mocks = [
+const offersAmsterdam = [
   {
     id: `FoY`,
     img: `img/apartment-01.jpg`,
@@ -60,7 +34,9 @@ export const mocks = [
     city: Сities.AMSTERDAM,
     coords: [52.3909553943508, 4.929309666406198],
   },
+];
 
+const offersHamburg = [
   {
     id: `aZr`,
     img: `img/apartment-03.jpg`,
@@ -105,3 +81,43 @@ export const mocks = [
     coords: [53.563341, 9.975654],
   },
 ];
+
+describe(`Reducer test group`, () => {
+  it(`Reducer correctly increments selectedСity`, () => {
+    expect(reducer(
+        {
+          selectedСity: Сities.AMSTERDAM,
+          offers: offersAmsterdam,
+          locations: [`Amsterdam`, `Hamburg`],
+        },
+        {
+          type: ActionType.CHANGE_CITY,
+
+          payload: `Hamburg`
+        }
+    )).toEqual({
+      selectedСity: Сities.HAMBURG,
+      offers: offersAmsterdam,
+      locations: [`Amsterdam`, `Hamburg`],
+    });
+  });
+
+  it(`Reducer correctly increments changeOffers`, () => {
+    expect(reducer(
+        {
+          selectedСity: Сities.HAMBURG,
+          offers: offersAmsterdam,
+          locations: [`Amsterdam`, `Hamburg`],
+        },
+        {
+          type: ActionType.CHANGE_OFFERS,
+          payload: `Hamburg`
+        }
+    )).toEqual({
+      selectedСity: Сities.HAMBURG,
+      offers: offersHamburg,
+      locations: [`Amsterdam`, `Hamburg`],
+    });
+  });
+
+});

@@ -14,6 +14,7 @@ export default class OfferList extends PureComponent {
 
   render() {
     const {offers} = this.props;
+    // console.log(offers) рендерится при нвведении?!
 
     return <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => {

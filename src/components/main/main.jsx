@@ -7,8 +7,7 @@ import Header from "../header/header.jsx";
 import PlaceList from "../place-list/place-list.jsx";
 
 const Main = (props) => {
-  const {offers} = props;
-
+  const {offers, locations, locationClickHandler, selectedСity} = props;
   return <div className="page page--gray page--main">
     <Header />
 
@@ -16,14 +15,18 @@ const Main = (props) => {
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
 
-        < Locations />
+        < Locations
+          locations = {locations}
+          selectedСity = {selectedСity}
+          locationClickHandler = {locationClickHandler}
+        />
 
       </div>
       <div className="cities">
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">312 places to stay in Amsterdam</b>
+            <b className="places__found">{offers.length} places to stay in {selectedСity.name}</b>
 
             < Sorting />
 
@@ -36,6 +39,7 @@ const Main = (props) => {
 
             < Map
               offers={offers}
+              selectedСity = {selectedСity}
             />
 
           </div>
@@ -53,6 +57,10 @@ Main.propTypes = {
     img: PropTypes.string,
     type: PropTypes.oneOf([`Apartment`, `Private room`]),
   })).isRequired,
+  selectedСity: PropTypes.object.isRequired,
+  locationClickHandler: PropTypes.func.isRequired,
+  locations: PropTypes.array.isRequired,
+
 };
 
 export default Main;

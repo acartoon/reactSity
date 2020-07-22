@@ -1,14 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Locations from "./locations";
-import {Сities} from "../../mocks/mocks";
+import LocationsItem from "./locations-item.jsx";
 
-it(`Locations component render correct`, () => {
+it(`LocationsItem component render correct`, () => {
   const tree = renderer
       .create(
-          <Locations
-            selectedСity = {Сities.AMSTERDAM}
-            locations = {[`Amsterdam`, `Dusseldorf`]}
+          <LocationsItem
+            location = {`Amsterdam`}
             active = {false}
             locationClickHandler = {jest.fn()}
           />
