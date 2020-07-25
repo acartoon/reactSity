@@ -39,6 +39,7 @@ it(`Main component render correct`, () => {
           <Map
             offers = {mocks}
             selectedСity = {Сities.AMSTERDAM}
+            activeCity = {`FoY`}
           />
       )
     .toJSON();

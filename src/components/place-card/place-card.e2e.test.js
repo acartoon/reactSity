@@ -15,6 +15,7 @@ it(`Симуляция клика на название`, () => {
     key={mocks[0].id}
     onTitleClick = {clickHandler}
     onActiveCard = {hoverHandler}
+    onHoverСity = {hoverHandler}
   />);
 
   const name = placeCardComponent.find(`.place-card__name`);
@@ -23,5 +24,5 @@ it(`Симуляция клика на название`, () => {
   name.simulate(`click`);
   placeCard.simulate(`mouseEnter`);
   expect(clickHandler).toHaveBeenCalledTimes(1);
-  expect(hoverHandler).toHaveBeenCalledTimes(1, {id: mocks[0].id});
+  expect(hoverHandler).toHaveBeenCalledTimes(1, mocks[0].id);
 });

@@ -81,7 +81,7 @@ exports[`PlaceList component render correct 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "38%",
               }
             }
           />
@@ -186,7 +186,7 @@ exports[`PlaceList component render correct 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "90%",
               }
             }
           />
@@ -291,7 +291,7 @@ exports[`PlaceList component render correct 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "60%",
               }
             }
           />
@@ -396,7 +396,7 @@ exports[`PlaceList component render correct 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "20%",
               }
             }
           />
@@ -495,7 +495,7 @@ exports[`PlaceList component render correct 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "50%",
               }
             }
           />
@@ -600,7 +600,7 @@ exports[`PlaceList component render correct 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "60%",
               }
             }
           />

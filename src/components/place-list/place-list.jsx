@@ -6,15 +6,10 @@ import PropTypes from "prop-types";
 export default class OfferList extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      activeOffer: null,
-    };
   }
 
   render() {
-    const {offers} = this.props;
-    // console.log(offers) рендерится при нвведении?!
+    const {offers, onHoverСity} = this.props;
 
     return <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => {
@@ -22,11 +17,7 @@ export default class OfferList extends PureComponent {
           offer={offer}
           key={offer.id}
           onTitleClick = {() => null}
-          onActiveCard={(id) => {
-            this.setState({
-              activeOffer: id,
-            });
-          }}
+          onHoverСity = {onHoverСity}
         />;
       })}
     </div>;
@@ -42,5 +33,6 @@ OfferList.propTypes = {
     img: PropTypes.string,
     type: PropTypes.oneOf([`Apartment`, `Private room`]),
   })).isRequired,
+  onHoverСity: PropTypes.func.isRequired,
 };
 

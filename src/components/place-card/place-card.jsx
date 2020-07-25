@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import {typeRoom, titles} from "../../mocks/offers";
 
 const PlaceCard = (props) => {
-  const {offer, onTitleClick, onActiveCard} = props;
+  const {offer, onTitleClick, onHoverСity} = props;
   return <article
-    onMouseEnter={() => onActiveCard({id: offer.id})}
-    onMouseLeave={() => onActiveCard({id: null})}
+    onMouseEnter={() => onHoverСity(offer.id)}
+    onMouseLeave={() => onHoverСity(null)}
     className="cities__place-card place-card">
 
     {offer.isPremium ? <div className="place-card__mark">
@@ -40,7 +40,7 @@ const PlaceCard = (props) => {
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width: 80 + `%`}}></span>
+          <span style={{width: offer.rating + `%`}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
@@ -60,12 +60,13 @@ PlaceCard.propTypes = {
     id: PropTypes.string,
     title: PropTypes.oneOf(titles),
     price: PropTypes.number,
+    rating: PropTypes.number,
     isPremium: PropTypes.bool,
     img: PropTypes.string,
     type: PropTypes.oneOf(typeRoom),
   }).isRequired,
   onTitleClick: PropTypes.func.isRequired,
-  onActiveCard: PropTypes.func.isRequired,
+  onHoverСity: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;
