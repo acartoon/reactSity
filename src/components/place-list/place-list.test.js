@@ -8,6 +8,8 @@ it(`PlaceList component render correct`, () => {
     .create(
         <PlaceList
           offers={mocks}
+          onTitleClick = {jest.fn()}
+          onHoverСity = {jest.fn()}
         />
     )
     .toJSON();

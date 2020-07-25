@@ -9,13 +9,7 @@ export default class Map extends PureComponent {
     this._city = [];
     this._map = null;
     this._layerGroup = null;
-
     this.zoom = 12;
-    this._icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [30, 30],
-    });
-
   }
 
   render() {
@@ -26,56 +20,60 @@ export default class Map extends PureComponent {
 
   // карта загрузилась после рендеринга
   componentDidMount() {
-    const {offers, selectedСity} = this.props;
-
-    this._city.push(selectedСity.location.latitude, selectedСity.location.longitude);
-
-
-    this._initMap(offers);
+    this._initMap();
   }
 
   // карта загрузилась после Обновления пропсов
   componentDidUpdate() {
-    const {offers, selectedСity} = this.props;
-    this._city = [];
-    this._city.push(selectedСity.location.latitude, selectedСity.location.longitude);
-
     // Очищаю слой
     this._layerGroup.clearLayers();
-    this._map.setView(this._city, this.zoom);
+    const {selectedСity} = this.props;
+    const city = [];
+    city.push(selectedСity.location.latitude, selectedСity.location.longitude);
 
-    this._createPins(offers);
+    this._map.setView(city, this.zoom);
+
+    this._createPins();
   }
 
-  _initMap(offers) {
+  _initMap() {
+    const {offers, selectedСity} = this.props;
+    const city = [];
+    city.push(selectedСity.location.latitude, selectedСity.location.longitude);
 
     this._map = leaflet.map(`map`, {
-      center: this._city,
+      center: city,
       zoom: this._zoom,
       zoomControl: this._zoomControl,
       marker: this._marker,
     });
 
-    this._map.setView(this._city, this.zoom);
 
     // создаю слой с городом
     this._layerGroup = leaflet.layerGroup().addTo(this._map);
 
     leaflet
-      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-      })
+    .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+      attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+    })
       .addTo(this._map);
 
+    this._map.setView(city, this.zoom);
     // создаю точки на карте
     this._createPins(offers);
   }
 
-  _createPins(offers) {
+  _createPins() {
+    const {offers, activeCity} = this.props;
 
     offers.forEach((offer) => {
+      const iconUrl = (offer.id === activeCity) ? `img/pin-active.svg` : `img/pin.svg`;
+      const icon = leaflet.icon({
+        iconUrl,
+        iconSize: [30, 30],
+      });
       leaflet
-      .marker(offer.coords, {icon: this._icon})
+      .marker(offer.coords, {icon})
       .addTo(this._layerGroup);
     });
   }
@@ -106,5 +104,5 @@ Map.propTypes = {
       zoom: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
-
+  activeCity: PropTypes.string,
 };

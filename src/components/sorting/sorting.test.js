@@ -5,7 +5,10 @@ import Sorting from "./sorting";
 it(`Locations component render correct`, () => {
   const tree = renderer
       .create(
-          <Sorting />
+          <Sorting
+            onClickSort = {jest.fn()}
+            activeSort = {`Popular`}
+          />
       )
     .toJSON();
   expect(tree).toMatchSnapshot();

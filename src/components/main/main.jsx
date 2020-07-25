@@ -1,53 +1,62 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import Locations from "../locations/locations.jsx";
 import Map from "../map/map.jsx";
-import Sorting from "../sorting/sorting.jsx";
 import Header from "../header/header.jsx";
-import PlaceList from "../place-list/place-list.jsx";
+import CitiesPlaces from "../cities-places/cities-places.jsx";
 
-const Main = (props) => {
-  const {offers, locations, locationClickHandler, selectedСity} = props;
-  return <div className="page page--gray page--main">
-    <Header />
+export default class Main extends PureComponent {
+  constructor(props) {
+    super(props);
 
-    <main className="page__main page__main--index">
-      <h1 className="visually-hidden">Cities</h1>
-      <div className="tabs">
+    this.state = {
+      activeCity: null,
+    };
+  }
 
-        < Locations
-          locations = {locations}
-          selectedСity = {selectedСity}
-          locationClickHandler = {locationClickHandler}
-        />
+  render() {
 
-      </div>
-      <div className="cities">
-        <div className="cities__places-container container">
-          <section className="cities__places places">
-            <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offers.length} places to stay in {selectedСity.name}</b>
+    const {offers, locations, locationClickHandler, selectedСity} = this.props;
+    return <div className="page page--gray page--main">
+      <Header />
 
-            < Sorting />
+      <main className="page__main page__main--index">
+        <h1 className="visually-hidden">Cities</h1>
+        <div className="tabs">
 
-            < PlaceList
+          < Locations
+            locations = {locations}
+            selectedСity = {selectedСity}
+            locationClickHandler = {locationClickHandler}
+          />
+
+        </div>
+
+        <div className="cities">
+          <div className="cities__places-container container">
+            <CitiesPlaces
               offers={offers}
+              selectedСity={selectedСity}
+              onHoverСity = {(cityId) => (
+                this.setState({activeCity: cityId})
+              )}
             />
+            <div className="cities__right-section">
 
-          </section>
-          <div className="cities__right-section">
+              < Map
+                offers={offers}
+                selectedСity = {selectedСity}
+                activeCity = {this.state.activeCity}
+              />
 
-            < Map
-              offers={offers}
-              selectedСity = {selectedСity}
-            />
-
+            </div>
           </div>
         </div>
-      </div>
-    </main>
-  </div>;
-};
+
+      </main>
+    </div>;
+  }
+}
 
 Main.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({
@@ -60,7 +69,5 @@ Main.propTypes = {
   selectedСity: PropTypes.object.isRequired,
   locationClickHandler: PropTypes.func.isRequired,
   locations: PropTypes.array.isRequired,
-
 };
 
-export default Main;
